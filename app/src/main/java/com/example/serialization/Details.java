@@ -1,0 +1,36 @@
+package com.example.serialization;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+public class Details extends AppCompatActivity {
+
+    TextView name, roll, gmail, phone;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_details);
+
+        name = findViewById(R.id.tv_name_id);
+        roll = findViewById(R.id.tv_roll_id);
+        gmail =findViewById(R.id.tv_mail_id);
+        phone = findViewById(R.id.tv_phone_id);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        Student student = (Student) bundle.getSerializable("key");
+        name.setText(student.getName());
+        roll.setText(student.getRoll());
+        gmail.setText(student.getMail());
+        phone.setText(student.getPhone());
+
+        findViewById(R.id.back_btn_id).setOnClickListener((View view)->{
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        });
+
+    }
+}
