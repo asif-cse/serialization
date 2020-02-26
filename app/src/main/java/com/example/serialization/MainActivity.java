@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Sname = findViewById(R.id.edt_naem_d);
+        Sname = findViewById(R.id.edt_naem_id);
         Sroll = findViewById(R.id.edt_roll_id);
         Smail = findViewById(R.id.edt_mail_id);
         Sphone = findViewById(R.id.edt_phone_id);
@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
             }else if(Sphone.length()==0){
                 Sphone.setError("Insert value");
                 return;
-            }try{
+            }
+
+            Student student = new Student(name, roll, mail, phone);
+            Details.open(MainActivity.this,student);
+            /*try{
                 Student student = new Student(name, roll, mail, phone);
 
                 Intent intent = new Intent(getApplicationContext(),Details.class);
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Main","Activity not found");
             }finally {
                 finish();
-            }
+            }*/
 
 
 
